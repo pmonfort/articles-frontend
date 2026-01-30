@@ -1,8 +1,8 @@
 <header class="navbar">
   <div class="navbar-container">
-    <a routerLink="/" class="logo">Articles App</a>
     <nav>
-      <a routerLink="/articles" routerLinkActive="active">Articles</a>
+      <a routerLink="/articles" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Articles</a>
+      <a routerLink="/articles/new" routerLinkActive="active">New Article</a>
     </nav>
   </div>
 </header>

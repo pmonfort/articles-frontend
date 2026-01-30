@@ -9,3 +9,9 @@ export interface Article {
   comments_count?: number;
   comments?: Comment[];
 }
+
+export interface ArticleCreate {
+  title: string;
+  body: string;
+  author_name: string;
+}
