@@ -1,0 +1,94 @@
+.engagement-overview {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+
+  h1 { margin-bottom: 24px; }
+}
+
+.loading {
+  text-align: center;
+  padding: 40px;
+  color: #888;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.stat-card {
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 24px;
+  text-align: center;
+
+  .number {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #007bff;
+  }
+
+  .label {
+    color: #666;
+    margin-top: 8px;
+  }
+}
+
+.most-commented {
+  h2 { margin-bottom: 16px; }
+
+  .empty {
+    color: #888;
+    font-style: italic;
+  }
+
+  .list {
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+  }
+
+  .row {
+    display: flex;
+    align-items: center;
+    padding: 12px 16px;
+    border-bottom: 1px solid #eee;
+
+    &:last-child { border-bottom: none; }
+    &:hover { background: #f9f9f9; }
+
+    .rank {
+      font-weight: bold;
+      color: #007bff;
+      width: 36px;
+    }
+
+    .info {
+      flex: 1;
+      color: #333;
+      font-weight: 500;
+
+      .author {
+        display: block;
+        font-size: 0.85rem;
+        color: #888;
+        font-weight: normal;
+        margin-top: 2px;
+      }
+    }
+
+    .count {
+      color: #28a745;
+      font-weight: 500;
+    }
+  }
+}

@@ -6,4 +6,5 @@ export const routes: Routes = [
   { path: 'articles', component: ArticleListComponent },
   { path: 'articles/new', loadComponent: () => import('./components/article-form/article-form.component').then(m => m.ArticleFormComponent) },
   { path: 'articles/:id', loadComponent: () => import('./components/article-detail/article-detail.component').then(m => m.ArticleDetailComponent) },
+  { path: 'engagement', loadComponent: () => import('./components/engagement-overview/engagement-overview.component').then(m => m.EngagementOverviewComponent) },
 ];

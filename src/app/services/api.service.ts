@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Article, ArticleCreate } from '../models/article.model';
 import { Comment, CommentCreate } from '../models/comment.model';
+import { EngagementOverview } from '../models/engagement.model';
 import { environment } from '../../environments/environment';
 
 @Injectable({ providedIn: 'root' })
@@ -25,5 +26,9 @@ export class ApiService {
 
   createComment(comment: CommentCreate): Observable<Comment> {
     return this.http.post<Comment>(`${this.baseUrl}/comments`, { comment });
+  }
+
+  getEngagementOverview(): Observable<EngagementOverview> {
+    return this.http.get<EngagementOverview>(`${this.baseUrl}/articles/engagement_overview`);
   }
 }

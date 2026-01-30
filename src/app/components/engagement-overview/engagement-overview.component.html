@@ -1,0 +1,42 @@
+<div class="engagement-overview">
+  <h1>Engagement Overview</h1>
+
+  @if (error()) {
+    <p class="error">{{ error() }}</p>
+  } @else if (!data()) {
+    <p class="loading">Loading stats...</p>
+  } @else {
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="number">{{ data()!.total_articles }}</div>
+        <div class="label">Total Articles</div>
+      </div>
+      <div class="stat-card">
+        <div class="number">{{ data()!.total_comments }}</div>
+        <div class="label">Total Comments</div>
+      </div>
+    </div>
+
+    <section class="most-commented">
+      <h2>Most Commented Articles</h2>
+      @if (data()!.most_commented_articles.length === 0) {
+        <p class="empty">No articles with comments yet.</p>
+      } @else {
+        <div class="list">
+          @for (article of data()!.most_commented_articles; track article.id; let i = $index) {
+            <a [routerLink]="['/articles', article.id]">
+              <div class="row">
+                <span class="rank">#{{ i + 1 }}</span>
+                <div class="info">
+                  {{ article.title }}
+                  <span class="author">by {{ article.author_name }}</span>
+                </div>
+                <span class="count">{{ article.comments_count }}</span>
+              </div>
+            </a>
+          }
+        </div>
+      }
+    </section>
+  }
+</div>
