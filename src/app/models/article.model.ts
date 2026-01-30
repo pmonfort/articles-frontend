@@ -1,0 +1,8 @@
+export interface Article {
+  id: number;
+  title: string;
+  body: string;
+  author_name: string;
+  created_at: string;
+  comments_count?: number;
+}
