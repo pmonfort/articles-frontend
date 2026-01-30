@@ -1,3 +1,5 @@
+import { Comment } from './comment.model';
+
 export interface Article {
   id: number;
   title: string;
@@ -5,4 +7,5 @@ export interface Article {
   author_name: string;
   created_at: string;
   comments_count?: number;
+  comments?: Comment[];
 }

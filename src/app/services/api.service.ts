@@ -13,4 +13,8 @@ export class ApiService {
   getArticles(): Observable<Article[]> {
     return this.http.get<Article[]>(`${this.baseUrl}/articles`);
   }
+
+  getArticle(id: number): Observable<Article> {
+    return this.http.get<Article>(`${this.baseUrl}/articles/${id}`);
+  }
 }

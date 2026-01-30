@@ -1,11 +1,12 @@
 import { Component, OnInit, signal } from '@angular/core';
 import { DatePipe, SlicePipe } from '@angular/common';
+import { RouterLink } from '@angular/router';
 import { ApiService } from '../../services/api.service';
 import { Article } from '../../models/article.model';
 
 @Component({
   selector: 'app-article-list',
-  imports: [DatePipe, SlicePipe],
+  imports: [DatePipe, SlicePipe, RouterLink],
   templateUrl: './article-list.component.html',
   styleUrl: './article-list.component.scss',
 })

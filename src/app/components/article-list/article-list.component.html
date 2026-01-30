@@ -15,14 +15,17 @@
   } @else {
     <div class="articles">
       @for (article of articles(); track article.id) {
-        <div class="article-card">
-          <h2>{{ article.title }}</h2>
-          <div class="meta">
-            <span>By {{ article.author_name }}</span>
-            <span>{{ article.created_at | date:'mediumDate' }}</span>
+        <a [routerLink]="['/articles', article.id]">
+          <div class="article-card">
+            <h2>{{ article.title }}</h2>
+            <div class="meta">
+              <span>By {{ article.author_name }}</span>
+              <span>{{ article.created_at | date:'mediumDate' }}</span>
+            </div>
+            <p class="preview">{{ article.body | slice:0:180 }}...</p>
+            <p class="comments-count">{{ article.comments_count }} comments</p>
           </div>
-          <p class="preview">{{ article.body | slice:0:180 }}...</p>
-        </div>
+        </a>
       }
     </div>
   }
