@@ -35,6 +35,8 @@
           }
         </div>
       }
+
+      <app-comment-form [articleId]="article()!.id" (commentAdded)="onCommentAdded()" />
     </section>
   }
 </div>

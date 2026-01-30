@@ -1,0 +1,55 @@
+.comment-form {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 16px;
+  margin-top: 20px;
+}
+
+h3 {
+  margin: 0 0 16px;
+  font-size: 1.1rem;
+}
+
+.error {
+  color: #c00;
+  margin-bottom: 12px;
+}
+
+.field {
+  margin-bottom: 12px;
+
+  label {
+    display: block;
+    margin-bottom: 4px;
+    font-weight: 500;
+  }
+
+  input, textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font: inherit;
+    box-sizing: border-box;
+
+    &:focus {
+      outline: none;
+      border-color: #007bff;
+    }
+  }
+}
+
+button {
+  background: #007bff;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: default;
+  }
+}
