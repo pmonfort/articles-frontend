@@ -1,4 +1,5 @@
-import { Component, OnInit, signal } from '@angular/core';
+import { Component, DestroyRef, OnInit, signal } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { DatePipe } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
@@ -20,7 +21,8 @@ export class ArticleDetailComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private api: ApiService
+    private api: ApiService,
+    private destroyRef: DestroyRef
   ) {}
 
   ngOnInit(): void {
@@ -30,7 +32,7 @@ export class ArticleDetailComponent implements OnInit {
   fetchArticle(): void {
     const id = Number(this.route.snapshot.paramMap.get('id'));
 
-    this.api.getArticle(id).subscribe({
+    this.api.getArticle(id).pipe(takeUntilDestroyed(this.destroyRef)).subscribe({
       next: (article) => {
         this.article.set(article);
         this.loading.set(false);

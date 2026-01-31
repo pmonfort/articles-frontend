@@ -1,4 +1,5 @@
-import { Component, OnInit, signal } from '@angular/core';
+import { Component, DestroyRef, OnInit, signal } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { RouterLink } from '@angular/router';
 import { ApiService } from '../../services/api.service';
 import { EngagementOverview } from '../../models/engagement.model';
@@ -13,10 +14,10 @@ export class EngagementOverviewComponent implements OnInit {
   data = signal<EngagementOverview | null>(null);
   error = signal<string | null>(null);
 
-  constructor(private api: ApiService) {}
+  constructor(private api: ApiService, private destroyRef: DestroyRef) {}
 
   ngOnInit(): void {
-    this.api.getEngagementOverview().subscribe({
+    this.api.getEngagementOverview().pipe(takeUntilDestroyed(this.destroyRef)).subscribe({
       next: (res) => this.data.set(res),
       error: (err) => {
         console.error(err);

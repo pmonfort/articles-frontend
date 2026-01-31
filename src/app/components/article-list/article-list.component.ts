@@ -1,4 +1,5 @@
-import { Component, OnInit, signal } from '@angular/core';
+import { Component, DestroyRef, OnInit, signal } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { DatePipe, SlicePipe } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { ApiService } from '../../services/api.service';
@@ -15,14 +16,14 @@ export class ArticleListComponent implements OnInit {
   loading = signal(true);
   error = signal<string | null>(null);
 
-  constructor(private api: ApiService) {}
+  constructor(private api: ApiService, private destroyRef: DestroyRef) {}
 
   ngOnInit(): void {
     this.loadArticles();
   }
 
   loadArticles(): void {
-    this.api.getArticles().subscribe({
+    this.api.getArticles().pipe(takeUntilDestroyed(this.destroyRef)).subscribe({
       next: (data) => {
         this.articles.set(data);
         this.loading.set(false);

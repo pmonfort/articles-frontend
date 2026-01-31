@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ApiService } from '../../services/api.service';
 
@@ -14,14 +14,14 @@ export class CommentFormComponent {
 
   authorName = '';
   body = '';
-  saving = false;
-  errorMsg = '';
+  saving = signal<boolean>(false);
+  errorMsg = signal<string | null>(null);
 
   constructor(private api: ApiService) {}
 
   submit(): void {
-    this.saving = true;
-    this.errorMsg = '';
+    this.saving.set(true);
+    this.errorMsg.set(null);
 
     this.api.createComment({
       article_id: this.articleId,
@@ -31,12 +31,12 @@ export class CommentFormComponent {
       next: () => {
         this.authorName = '';
         this.body = '';
-        this.saving = false;
+        this.saving.set(false);
         this.commentAdded.emit();
       },
       error: () => {
-        this.saving = false;
-        this.errorMsg = 'Failed to post comment';
+        this.saving.set(false);
+        this.errorMsg.set('Failed to post comment');
       }
     });
   }

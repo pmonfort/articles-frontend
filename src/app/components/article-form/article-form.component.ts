@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ApiService } from '../../services/api.service';
@@ -11,33 +11,33 @@ import { ArticleCreate } from '../../models/article.model';
   styleUrl: './article-form.component.scss'
 })
 export class ArticleFormComponent {
-  article: ArticleCreate = {
+  article = signal<ArticleCreate>({
     title: '',
     body: '',
     author_name: ''
-  };
-  submitting = false;
-  errorMsg = '';
+  });
+  submitting = signal(false);
+  errorMsg = signal<string | null>(null);
 
   constructor(private api: ApiService, private router: Router) {}
 
   onSubmit(): void {
-    if (this.submitting) return;
+    if (this.submitting()) return;
 
-    this.submitting = true;
-    this.errorMsg = '';
+    this.submitting.set(true);
+    this.errorMsg.set(null);
 
-    this.api.createArticle(this.article).subscribe({
+    this.api.createArticle(this.article()).subscribe({
       next: (created) => {
         this.router.navigate(['/articles', created.id]);
       },
       error: (err) => {
-        this.submitting = false;
+        this.submitting.set(false);
         // API returns { errors: [...] } on validation failure
         if (err.error?.errors) {
-          this.errorMsg = err.error.errors.join(', ');
+          this.errorMsg.set(err.error.errors.join(', '));
         } else {
-          this.errorMsg = 'Something went wrong. Please try again.';
+          this.errorMsg.set('Something went wrong. Please try again.');
         }
       }
     });

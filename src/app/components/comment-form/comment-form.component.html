@@ -1,19 +1,19 @@
 <div class="comment-form">
   <h3>Add a Comment</h3>
-  @if (errorMsg) {
-    <p class="error">{{ errorMsg }}</p>
+  @if (errorMsg()) {
+    <p class="error">{{ errorMsg() }}</p>
   }
   <form (ngSubmit)="submit()" #f="ngForm">
     <div class="field">
       <label>Name</label>
-      <input [(ngModel)]="authorName" name="authorName" required [disabled]="saving" />
+      <input [(ngModel)]="authorName" name="authorName" required [disabled]="saving()" />
     </div>
     <div class="field">
       <label>Comment</label>
-      <textarea [(ngModel)]="body" name="body" required rows="3" [disabled]="saving"></textarea>
+      <textarea [(ngModel)]="body" name="body" required rows="3" [disabled]="saving()"></textarea>
     </div>
-    <button type="submit" [disabled]="saving || f.invalid">
-      {{ saving ? 'Posting...' : 'Post' }}
+    <button type="submit" [disabled]="saving() || f.invalid">
+      {{ saving() ? 'Posting...' : 'Post' }}
     </button>
   </form>
 </div>
