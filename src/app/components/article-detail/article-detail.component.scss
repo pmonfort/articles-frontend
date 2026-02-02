@@ -9,7 +9,7 @@
   color: #007bff;
   text-decoration: none;
   margin-bottom: 16px;
-  &:hover { text-decoration: underline; }
+  cursor: pointer;
 }
 
 .loading, .not-found, .error {

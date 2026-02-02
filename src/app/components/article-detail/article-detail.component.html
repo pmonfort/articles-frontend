@@ -1,5 +1,5 @@
 <div class="article-detail">
-  <a href="javascript:window.history.back();" class="back-link">Back</a>
+  <a (click)="goBack()" class="back-link" role="button">Back</a>
 
   @if (loading()) {
     <p class="loading">Loading...</p>

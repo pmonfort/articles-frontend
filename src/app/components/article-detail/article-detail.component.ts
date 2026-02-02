@@ -6,6 +6,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { ApiService } from '../../services/api.service';
 import { Article } from '../../models/article.model';
 import { CommentFormComponent } from '../comment-form/comment-form.component';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-article-detail',
@@ -22,7 +23,8 @@ export class ArticleDetailComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private api: ApiService,
-    private destroyRef: DestroyRef
+    private destroyRef: DestroyRef,
+    private location: Location
   ) {}
 
   ngOnInit(): void {
@@ -48,6 +50,10 @@ export class ArticleDetailComponent implements OnInit {
         }
       }
     });
+  }
+
+  goBack(): void {
+    this.location.back();
   }
 
   onCommentAdded(): void {
